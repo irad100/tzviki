@@ -1,0 +1,27 @@
+name: Daily Photo Bot
+
+on:
+  schedule:
+    # Run daily at 7:15 AM UTC+3
+    - cron: '15 4 * * *'
+  workflow_dispatch:  # Allow manual triggers for testing
+
+jobs:
+  send-daily-photo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Run whatsapp bot
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          FROM_NUMBER: ${{ secrets.FROM_NUMBER }}
+          TO_NUMBER: ${{ secrets.TO_NUMBER }}
+        run: uv run tzviki

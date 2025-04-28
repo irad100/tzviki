@@ -1,0 +1,20 @@
+[project]
+name = "tzviki"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Irad Aharoni", email = "irad.aharoni@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv>=1.1.0",
+    "twilio>=9.5.2",
+]
+
+[project.scripts]
+tzviki = "tzviki:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
