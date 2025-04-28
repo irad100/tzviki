@@ -18,6 +18,9 @@ jobs:
         with:
           enable-cache: true
 
+      - name: Install dependencies
+        run: uv sync
+
       - name: Run whatsapp bot
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
